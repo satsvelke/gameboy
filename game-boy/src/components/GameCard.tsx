@@ -3,6 +3,7 @@ import { GameResult } from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImages from "../services/image-url";
+import GameCardContainer from "./GameCardContainer";
 
 interface GameResultProps {
   gameResult: GameResult;
@@ -10,19 +11,21 @@ interface GameResultProps {
 
 const GameCard = ({ gameResult }: GameResultProps) => {
   return (
-    <Card width="300px" borderRadius={10} overflow="hidden">
-      <Image src={getCroppedImages(gameResult.background_image)}></Image>
-      <CardBody>
-        <Heading fontSize="2xl">{gameResult.name}</Heading>
+    <GameCardContainer>
+      <Card>
+        <Image src={getCroppedImages(gameResult.background_image)}></Image>
+        <CardBody>
+          <Heading fontSize="2xl">{gameResult.name}</Heading>
 
-        <HStack justifyContent="space-between">
-          <PlatformIconList
-            platforms={gameResult.parent_platforms.map((p) => p.platform)}
-          ></PlatformIconList>
-          <CriticScore score={gameResult.metacritic}></CriticScore>
-        </HStack>
-      </CardBody>
-    </Card>
+          <HStack justifyContent="space-between">
+            <PlatformIconList
+              platforms={gameResult.parent_platforms.map((p) => p.platform)}
+            ></PlatformIconList>
+            <CriticScore score={gameResult.metacritic}></CriticScore>
+          </HStack>
+        </CardBody>
+      </Card>
+    </GameCardContainer>
   );
 };
 
