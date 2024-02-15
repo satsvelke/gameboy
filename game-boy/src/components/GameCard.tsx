@@ -11,21 +11,19 @@ interface GameResultProps {
 
 const GameCard = ({ gameResult }: GameResultProps) => {
   return (
-    <GameCardContainer>
-      <Card>
-        <Image src={getCroppedImages(gameResult.background_image)}></Image>
-        <CardBody>
-          <Heading fontSize="2xl">{gameResult.name}</Heading>
+    <Card>
+      <Image src={getCroppedImages(gameResult.background_image)}></Image>
+      <CardBody>
+        <Heading fontSize="2xl">{gameResult.name}</Heading>
 
-          <HStack justifyContent="space-between">
-            <PlatformIconList
-              platforms={gameResult.parent_platforms.map((p) => p.platform)}
-            ></PlatformIconList>
-            <CriticScore score={gameResult.metacritic}></CriticScore>
-          </HStack>
-        </CardBody>
-      </Card>
-    </GameCardContainer>
+        <HStack justifyContent="space-between">
+          <PlatformIconList
+            platforms={gameResult.parent_platforms.map((p) => p.platform)}
+          ></PlatformIconList>
+          <CriticScore score={gameResult.metacritic}></CriticScore>
+        </HStack>
+      </CardBody>
+    </Card>
   );
 };
 

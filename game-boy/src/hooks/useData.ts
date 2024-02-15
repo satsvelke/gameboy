@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
+import { CanceledError } from "axios";
 
 interface DataResponse<T> {
   count: number;
@@ -24,8 +25,9 @@ const useData = <T>(endpoint: string) => {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error.message);
+        if (error instanceof CanceledError) return null;
         setLoading(false);
+        setError(error.message);
       })
       .finally(() => {});
 

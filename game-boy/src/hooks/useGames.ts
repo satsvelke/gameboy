@@ -6,7 +6,7 @@ export interface Platform {
   name: string;
 }
 
-interface GameResult {
+export interface GameResult {
   id: number;
   slug: string;
   name: string;
