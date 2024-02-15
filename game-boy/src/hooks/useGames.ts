@@ -58,25 +58,30 @@ interface Games {
 const useGames = () => {
   const [gamesResults, setGames] = useState<GameResult[]>([]);
   const [error, SetError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     const abortController = new AbortController();
 
     apiClient
       .get<Games>("/games", { signal: abortController.signal })
       .then((res) => {
         setGames(res.data.results);
+        setLoading(false);
       })
       .catch((error) => {
         if (error instanceof CanceledError) return null;
         SetError(error.message);
+        setLoading(false);
       })
       .finally(() => {});
 
     return () => abortController.abort();
   }, []);
 
-  return { gamesResults, error };
+  return { gamesResults, error, isLoading };
 };
 
 export default useGames;
