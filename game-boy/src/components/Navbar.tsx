@@ -3,11 +3,15 @@ import logo from "../assets/logo.jpg";
 import SwitchTheme from "./SwitchTheme";
 import SearchInput from "./SearchInput";
 
-const Navbar = () => {
+interface NavbarProps {
+  onSearch: (searchText: string) => void;
+}
+
+const Navbar = ({ onSearch }: NavbarProps) => {
   return (
     <HStack padding="10px">
       <Image src={logo} boxSize="60px"></Image>
-      <SearchInput></SearchInput>
+      <SearchInput onSearch={onSearch}></SearchInput>
       <SwitchTheme></SwitchTheme>
     </HStack>
   );
