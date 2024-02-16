@@ -3,7 +3,6 @@ import { GameResult } from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImages from "../services/image-url";
-import GameCardContainer from "./GameCardContainer";
 
 interface GameResultProps {
   gameResult: GameResult;
