@@ -47,9 +47,14 @@ export interface GameResult {
   ];
 }
 
-const useGames = (selectedGenre: GenreResult | null) =>
-  useData<GameResult>("/games", { params: { genres: selectedGenre?.id } }, [
-    selectedGenre?.id,
-  ]);
+const useGames = (
+  selectedGenre: GenreResult | null,
+  selectedPlatform: Platform | null
+) =>
+  useData<GameResult>(
+    "/games",
+    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
+    [selectedGenre?.id, selectedPlatform?.id]
+  );
 
 export default useGames;
