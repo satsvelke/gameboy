@@ -14,7 +14,7 @@ interface GameGridProps {
 const GameGrid = ({ gameQuery }: GameGridProps) => {
   const { data, error, isLoading } = useGames(gameQuery);
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
   return (
     <>
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={5}>
@@ -24,7 +24,7 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
               <GameCardSkeleton></GameCardSkeleton>
             </GameCardContainer>
           ))}
-        {data.map((gameResult) => (
+        {data?.results.map((gameResult) => (
           <GameCardContainer key={gameResult.id}>
             <GameCard gameResult={gameResult}></GameCard>
           </GameCardContainer>
