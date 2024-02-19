@@ -1,5 +1,12 @@
 import axios from "axios";
 
+export interface DataResponse<T> {
+  count: number;
+  next: string;
+  previous: string;
+  results: T[];
+}
+
 const create = axios.create({
   baseURL: "https://api.rawg.io/api",
   params: {

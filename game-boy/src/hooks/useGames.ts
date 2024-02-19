@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
-import { DataResponse } from "./useData";
-import apiClient from "../services/api-client";
+import apiClient, { DataResponse } from "../services/api-client";
 
 export interface Platform {
   id: number;
@@ -71,7 +70,7 @@ const useGames = (gameQuery: GameQuery) =>
         .get<DataResponse<GameResult>>("/games", {
           params: {
             genres: gameQuery.genre?.id,
-            platforms: gameQuery.platform?.id,
+            parent_platforms: gameQuery.platform?.id,
             ordering: gameQuery.sortOrder,
             search: gameQuery.searchText,
           },
